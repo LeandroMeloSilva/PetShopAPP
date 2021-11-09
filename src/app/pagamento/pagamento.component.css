@@ -1,7 +1,0 @@
-.container {
-  display: flexbox;
-  align-items:stretch;
-  justify-content: stretch;
-  margin: 0 auto;
-  z-index: 1000;
-}

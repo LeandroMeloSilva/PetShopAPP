@@ -3,12 +3,11 @@
 </div>
 
 <div class="row">
-
   <div class="col-md">
       <table class="table">
           <thead class="thead-light">
               <tr>
-                   <th style="width:550px;">cadastro</th>
+                   <th style="width:500px;"></th>
                   <th>Nome do Cliente</th>
                   <th>Endereço</th>
                   <th>Nome do Animal</th>
@@ -108,8 +107,8 @@
               required [class.invalid]=" comportamento.invalid && comportamento.touched">
       </div>
     </div>
-
-  <div class="form-group col-md-6">
+  <div class="form-row"></div>
+  <div class="form-group col-md-2">
       <button class="btn btn-info btn-lg btn-block" type="submit" [disabled]="form.invalid">Cadastrar</button>
   </div>
 </form>
