@@ -1,0 +1,89 @@
+<div class="jumbotron py-3">
+  <h1 class="display-4 text-center">Agendamentos</h1>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+
+  </div>
+  <div class="col-md-6">
+      <table class="table">
+          <thead class="thead-light">
+            <tr>
+              <th>Data e Hora</th>
+              <th>Situação</th>
+              <th>Cliente ID</th>
+              <th></th>
+            </tr>
+         </thead>
+          <tbody>
+              <tr *ngFor="let pd of service.list">
+
+                  <td (click)="populateForm(pd)">{{pd.dataHora}}</td>
+                  <td (click)="populateForm(pd)">{{pd.situacao}}</td>
+                  <td (click)="populateForm(pd)">{{pd.clienteId}}</td>
+
+
+                  <td>
+                      <i class="far fa-trash-alt fa-lg text-danger" (click)="onDelete(pd.agendamentoId)"></i>
+                  </td>
+              </tr>
+          </tbody>
+      </table>
+  </div>
+</div>
+
+<form novalidate autocomplete="off" #form="ngForm" (submit)="onSubmit(form)">
+  <input type="hidden" name="agendamentoId" [value]="service.formData.agendamentoId" />
+
+
+   <div class="form-row">
+      <div class="form-group col-md-6">
+          <label>Data e Hora </label>
+          <input class="form-control form-control-lg" placeholder="Digite a data e hora" name="dataHora"
+              #dataHora="ngModel" [(ngModel)]="service.formData.dataHora"
+              required [class.invalid]=" dataHora.invalid && dataHora.touched">
+      </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+        <label>Situação</label>
+        <input class="form-control form-control-lg" placeholder="Digite a situacao" name="situacao"
+            #situacao="ngModel" [(ngModel)]="service.formData.situacao"
+            required [class.invalid]="situacao.invalid && situacao.touched">
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-6">
+        <label>Agendamento Total</label>
+        <input class="form-control form-control-lg" placeholder="Digite o agendamento total" name="agendamentoTotal"
+            #agendamentoTotal="ngModel" [(ngModel)]="service.formData.agendamentoTotal"
+            required [class.invalid]="agendamentoTotal.invalid && agendamentoTotal.touched">
+    </div>
+  </div>
+  <div class="form-row">
+      <div class="form-group col-md-6">
+          <label>ServiçoID</label>
+          <input class="form-control form-control-lg" placeholder="Digite o Servico ID" name="servicoid"
+              #servicoId="ngModel" [(ngModel)]="service.formData.servicoId"
+              required [class.invalid]=" servicoId.invalid && servicoId.touched">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+          <label>ClienteID</label>
+          <input class="form-control form-control-lg" placeholder="Digite o ClienteId" name="clienteId"
+              #clienteId="ngModel" [(ngModel)]="service.formData.clienteId"
+              required [class.invalid]=" clienteId.invalid && clienteId.touched">
+      </div>
+    </div>
+
+  <div class="form-group col-md-6">
+      <button class="btn btn-info btn-lg btn-block" type="submit" [disabled]="form.invalid">SUBMIT</button>
+  </div>
+</form>
+
+
+
+
