@@ -3,17 +3,16 @@
 </div>
 
 <div class="row">
-  <div class="col-md-6">
 
-  </div>
-  <div class="col-md-6">
+  <div class="col-md">
       <table class="table">
           <thead class="thead-light">
               <tr>
+                   <th style="width:550px;">cadastro</th>
                   <th>Nome do Cliente</th>
                   <th>Endereço</th>
                   <th>Nome do Animal</th>
-                  <th></th>
+
               </tr>
           </thead>
           <tbody>
@@ -48,7 +47,7 @@
   <div class="form-row">
     <div class="form-group col-md-6">
         <label>CPF</label>
-        <input class="form-control form-control-lg" placeholder="Digite o CPF" name="cpf"
+        <input class="form-control form-control-lg" pattern="^[a-zA-z0-9]+$" placeholder="Digite o CPF" name="cpf"
             #cpf="ngModel" [(ngModel)]="service.formData.cpf"
             required [class.invalid]="cpf.invalid && cpf.touched">
     </div>
@@ -56,7 +55,7 @@
     <div class="form-row">
       <div class="form-group col-md-6">
           <label>Telefone</label>
-          <input class="form-control form-control-lg" placeholder="Digite o Telefone" name="telefone"
+          <input class="form-control form-control-lg" pattern="^[a-zA-z0-9]+$" placeholder="Digite o Telefone" name="telefone"
               #telefone="ngModel" [(ngModel)]="service.formData.telefone"
               required  [class.invalid]=" telefone.invalid && telefone.touched">
       </div>
@@ -64,7 +63,7 @@
     <div class="form-row">
       <div class="form-group col-md-6">
           <label>Email</label>
-          <input class="form-control form-control-lg" placeholder="Digite o email" name="email"
+          <input class="form-control form-control-lg" pattern="^[a-zA-z0-9]+$" placeholder="Digite o email" name="email"
               #email="ngModel" [(ngModel)]="service.formData.email"
               required maxlength="" minlength="" [class.invalid]=" email.invalid && email.touched">
       </div>
@@ -111,7 +110,7 @@
     </div>
 
   <div class="form-group col-md-6">
-      <button class="btn btn-info btn-lg btn-block" type="submit" [disabled]="form.invalid">SUBMIT</button>
+      <button class="btn btn-info btn-lg btn-block" type="submit" [disabled]="form.invalid">Cadastrar</button>
   </div>
 </form>
 

@@ -29,7 +29,7 @@ export class ServicoComponent implements OnInit {
       res => {
         this.resetForm(form);
         this.service.refreshList();
-        this.toastr.success('Submitted successfully', 'Payment Detail Register')
+        this.toastr.success('Enviado com Sucesso!', 'Detalhe de cliente cadastrado com Sucesso!')
       },
       err => { console.log(err); }
     );
@@ -40,7 +40,7 @@ export class ServicoComponent implements OnInit {
       res => {
         this.resetForm(form);
         this.service.refreshList();
-        this.toastr.info('Updated successfully', 'Payment Detail Register')
+        this.toastr.info('Atualizado com Sucesso!', 'Detalhe de serviço atualizado com Sucesso!')
       },
       err => { console.log(err); }
     );
@@ -57,12 +57,12 @@ export class ServicoComponent implements OnInit {
   }
 
   onDelete(id: number) {
-    if (confirm('Are you sure to delete this record?')) {
+    if (confirm('Tem Certeza que Deseja Deletar esse Registro?')) {
       this.service.deleteServico(id)
         .subscribe(
           res => {
             this.service.refreshList();
-            this.toastr.error("Deleted successfully", 'Payment Detail Register');
+            this.toastr.error("Deletado com Sucesso", 'Detalhe de serviço');
           },
           err => { console.log(err); }
         )

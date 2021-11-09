@@ -40,21 +40,21 @@
   </div>
   <div class="form-group">
       <label>Valores</label>
-      <input class="form-control form-control-lg" placeholder="16 Digit Card Number" name="Valor"
+      <input class="form-control form-control-lg" pattern="^[a-zA-z0-9]+$" placeholder="16 Digit Card Number" name="Valor"
           #valor="ngModel" [(ngModel)]="service.formData.valor"
           required [class.invalid]="  valor.invalid && valor.touched">
   </div>
   <div class="form-row">
       <div class="form-group col-md-6">
           <label>Duração</label>
-          <input class="form-control form-control-lg" placeholder="Security Code" name="Duracao"
+          <input class="form-control form-control-lg" pattern="^[a-zA-z0-9]+$" placeholder="Security Code" name="Duracao"
               #duracao="ngModel" [(ngModel)]="service.formData.duracao"
               required [class.invalid]="duracao.invalid && duracao.touched">
       </div>
   </div>
 
   <div class="form-group">
-      <button class="btn btn-info btn-lg btn-block" type="submit" [disabled]="form.invalid">SUBMIT</button>
+      <button class="btn btn-info btn-lg btn-block" type="submit" [disabled]="form.invalid">Cadastrar</button>
   </div>
 </form>
 

@@ -9,18 +9,19 @@
   <div class="col-md-6">
       <table class="table">
           <thead class="thead-light">
-            <tr>
-              <th>Data e Hora</th>
-              <th>Situação</th>
-              <th></th>
-            </tr>
-         </thead>
+              <tr>
+                  <th>Data e Hora</th>
+                  <th>CPF Cliente</th>
+                  <th>Nome Serviço</th>
+                  <th></th>
+              </tr>
+          </thead>
           <tbody>
               <tr *ngFor="let pd of service.list">
 
                   <td (click)="populateForm(pd)">{{pd.dataHora}}</td>
-                  <td (click)="populateForm(pd)">{{pd.situacao}}</td>
-
+                  <td (click)="populateForm(pd)">{{pd.cpfCliente}</td>
+                  <td (click)="populateForm(pd)">{{pd.nomeServico}}</td>
 
 
                   <td>
@@ -33,53 +34,37 @@
 </div>
 
 <form novalidate autocomplete="off" #form="ngForm" (submit)="onSubmit(form)">
-  <input type="hidden" name="agendamentoId" [value]="service.formData.agendamentoId" />
+  <input type="hidden" name="clienteId" [value]="service.formData.agendamentoId" />
 
 
    <div class="form-row">
       <div class="form-group col-md-6">
-          <label>AgendamentoId </label>
-          <input class="form-control form-control-lg" placeholder="Digite ID" name="agendamentoId"
-              #agendamentoId="ngModel"[(ngModel)]="service.formData.dataHora"
-              required [class.invalid]=" agendamentoId.invalid && agendamentoId.touched">
+          <label>Data e Hora </label>
+          <input class="form-control form-control-lg" placeholder="Digite o Data" name="dataHora"
+              #dataHora="ngModel" [(ngModel)]="service.formData.dataHora"
+              required [class.invalid]=" dataHora.invalid && dataHora.touched">
       </div>
   </div>
   <div class="form-row">
     <div class="form-group col-md-6">
-        <label>Situação</label>
-        <input class="form-control form-control-lg" placeholder="Digite a situacao" name="situacao"
-            #situacao="ngModel"[(ngModel)]="service.formData.situacao"
-            required [class.invalid]="situacao.invalid && situacao.touched">
+        <label>CPF</label>
+        <input class="form-control form-control-lg" pattern="^[a-zA-z0-9]+$" placeholder="Digite o CPF" name="cpfCliente"
+            #cpfCliente="ngModel" [(ngModel)]="service.formData.cpfCliente"
+            required [class.invalid]="cpfCliente.invalid && cpfCliente.touched">
     </div>
   </div>
-
-  <div class="form-row">
-    <div class="form-group col-md-6">
-        <label>Agendamento Total</label>
-        <input class="form-control form-control-lg" placeholder="Digite o agendamento total" name="agendamentoTotal"
-            #agendamentoTotal="ngModel" [(ngModel)]="service.formData.agendamentoTotal"
-            required [class.invalid]="agendamentoTotal.invalid && agendamentoTotal.touched">
+    <div class="form-row">
+      <div class="form-group col-md-6">
+          <label>Serviço</label>
+          <input class="form-control form-control-lg" placeholder="Digite o Telefone" name="nomeServico"
+              #nomeServico="ngModel" [(ngModel)]="service.formData.nomeServico"
+              required  [class.invalid]=" nomeServico.invalid && nomeServico.touched">
+      </div>
     </div>
-  </div>
- <!--  <div class="form-row">
-      <div class="form-group col-md-6">
-          <label>ServiçoID</label>
-          <input class="form-control form-control-lg" placeholder="Digite o Servico ID" name="servicoid"
-              #servicoId="ngModel" [(ngModel)]="service.formData.servicoId"
-              required [class.invalid]=" servicoId.invalid && servicoId.touched">
-      </div>
-    </div> -->
-   <!--  <div class="form-row">
-      <div class="form-group col-md-6">
-          <label>ClienteID</label>
-          <input class="form-control form-control-lg" placeholder="Digite o ClienteId" name="clienteId"
-              #clienteId="ngModel" [(ngModel)]="service.formData.clienteId"
-              required [class.invalid]=" clienteId.invalid && clienteId.touched">
-      </div>
-    </div> -->
+    
 
   <div class="form-group col-md-6">
-      <button class="btn btn-info btn-lg btn-block" type="submit" [disabled]="form.invalid">SUBMIT</button>
+      <button class="btn btn-info btn-lg btn-block" type="submit" [disabled]="form.invalid">Cadastrar</button>
   </div>
 </form>
 

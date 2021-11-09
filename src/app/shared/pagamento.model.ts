@@ -1,7 +1,9 @@
 export class Pagamento {
   pagamentoId: number=0;
-  valorTotal: string='';
- /*  clienteId:  string=''; */
+  dataPagamento: string='';
+  valor: string='';
+  cpfCliente: string='';
+
 }
 
 

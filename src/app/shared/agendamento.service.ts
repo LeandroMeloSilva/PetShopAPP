@@ -11,17 +11,17 @@ export class AgendamentoService {
 
   readonly baseURL = 'https://localhost:44360/api/Agendamentoes'
   formData: Agendamento = new Agendamento();
-  list: Agendamento[]=[];
+  list: Agendamento[];
 
-  postAgendamento() {
+  postCliente() {
     return this.http.post(this.baseURL, this.formData);
   }
 
-  putAgendamento() {
+  putCliente() {
     return this.http.put(`${this.baseURL}/${this.formData.agendamentoId}`, this.formData);
   }
 
-  deleteAgendamento(id: number) {
+  deleteCliente(id: number) {
     return this.http.delete(`${this.baseURL}/${id}`);
   }
 
@@ -33,4 +33,3 @@ export class AgendamentoService {
 
 
 }
-

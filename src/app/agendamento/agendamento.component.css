@@ -1,0 +1,7 @@
+.container {
+  display:inline-flex;
+  align-items:stretch;
+  justify-content: stretch;
+  margin: 0 auto;
+  z-index: 1000;
+}

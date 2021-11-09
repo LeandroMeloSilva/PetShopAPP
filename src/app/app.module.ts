@@ -10,6 +10,7 @@ import { AgendamentoComponent } from './agendamento/agendamento.component';
 import { ClienteComponent } from './cliente/cliente.component';
 import { ServicoComponent } from './servico/servico.component';
 import { PagamentoComponent } from './pagamento/pagamento.component';
+import { HomeComponent } from './home/home.component';
 
 
 
@@ -19,7 +20,8 @@ import { PagamentoComponent } from './pagamento/pagamento.component';
     AgendamentoComponent,
     ClienteComponent,
     PagamentoComponent,
-    ServicoComponent
+    ServicoComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
