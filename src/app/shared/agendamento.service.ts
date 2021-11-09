@@ -11,7 +11,7 @@ export class AgendamentoService {
 
   readonly baseURL = 'https://localhost:44360/api/Agendamentoes'
   formData: Agendamento = new Agendamento();
-  list: Agendamento[];
+  list: Agendamento[]=[];
 
   postAgendamento() {
     return this.http.post(this.baseURL, this.formData);

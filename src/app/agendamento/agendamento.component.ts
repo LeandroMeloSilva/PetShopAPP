@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { AgendamentoService } from './../shared/agendamento.service';
-import { Agendamento } from './../shared/agendamento.model';
 import { ToastrService } from 'ngx-toastr';
 import { NgForm } from '@angular/forms';
+import { Agendamento } from 'src/app/shared/agendamento.model';
+import { AgendamentoService } from 'src/app/shared/agendamento.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-agendamento',
@@ -11,14 +12,32 @@ import { NgForm } from '@angular/forms';
 })
 export class AgendamentoComponent implements OnInit {
 
-  constructor(public service: AgendamentoService,
+  constructor(public service: AgendamentoService ,
     private toastr: ToastrService) { }
 
-  ngOnInit(): void {
-    this.service.refreshList();
-  }
+    ngOnInit(): void {
+      this.service.refreshList();
+    }
+
+    populateForm(selectedRecord: Agendamento) {
+      this.service.formData = Object.assign({}, selectedRecord);
+    }
+
+    onDelete(id: number) {
+      if (confirm('Tem Certeza que Deseja Deletar esse Registro?')) {
+        this.service.deleteAgendamento(id)
+          .subscribe(
+            res => {
+              this.service.refreshList();
+              this.toastr.error("Deletado com Sucesso", 'Detalhe de Pagamento');
+            },
+            err => { console.log(err) }
+          )
+      }
+    }
+
   onSubmit(form: NgForm) {
-    if (this.service.formData. agendamentoId==0)
+    if (this.service.formData.agendamentoId == 0)
       this.insertRecord(form);
     else
       this.updateRecord(form);
@@ -29,7 +48,7 @@ export class AgendamentoComponent implements OnInit {
       res => {
         this.resetForm(form);
         this.service.refreshList();
-        this.toastr.success('Submitted successfully', 'Payment Detail Register')
+        this.toastr.success('Enviado com Sucesso!', 'Detalhe de Pagamento Registrado com Sucesso!')
       },
       err => { console.log(err); }
     );
@@ -40,33 +59,15 @@ export class AgendamentoComponent implements OnInit {
       res => {
         this.resetForm(form);
         this.service.refreshList();
-        this.toastr.info('Updated successfully', 'Payment Detail Register')
+        this.toastr.info('Atualizado com Sucesso!', 'Detalhes de Pagamento Registrados!')
       },
       err => { console.log(err); }
     );
   }
-
 
   resetForm(form: NgForm) {
     form.form.reset();
     this.service.formData = new Agendamento();
   }
 
-  populateForm(selectedRecord: Agendamento) {
-    this.service.formData = Object.assign({}, selectedRecord);
-  }
-
-  onDelete(id: number) {
-    if (confirm('Are you sure to delete this record?')) {
-      this.service.deleteAgendamento(id)
-        .subscribe(
-          res => {
-            this.service.refreshList();
-            this.toastr.error("Deleted successfully", 'Payment Detail Register');
-          },
-          err => { console.log(err) }
-        )
-    }
-  }
 }
-

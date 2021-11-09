@@ -64,7 +64,7 @@ export class ServicoComponent implements OnInit {
             this.service.refreshList();
             this.toastr.error("Deleted successfully", 'Payment Detail Register');
           },
-          err => { console.log(err) }
+          err => { console.log(err); }
         )
     }
   }
