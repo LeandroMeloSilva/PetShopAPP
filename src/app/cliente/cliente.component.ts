@@ -12,7 +12,8 @@ import { NgForm } from '@angular/forms';
 export class ClienteComponent implements OnInit {
 
   constructor(public service: ClienteService,
-    private toastr: ToastrService) { }
+    private toastr: ToastrService
+    ) { }
 
   ngOnInit(): void {
     this.service.refreshList();

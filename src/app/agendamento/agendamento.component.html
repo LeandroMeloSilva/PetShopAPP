@@ -12,7 +12,7 @@
             <tr>
               <th>Data e Hora</th>
               <th>Situação</th>
-              <th>Cliente ID</th>
+             <!--  <th>Cliente ID</th> -->
               <th></th>
             </tr>
          </thead>
@@ -21,7 +21,7 @@
 
                   <td (click)="populateForm(pd)">{{pd.dataHora}}</td>
                   <td (click)="populateForm(pd)">{{pd.situacao}}</td>
-                  <td (click)="populateForm(pd)">{{pd.clienteId}}</td>
+                  <!-- <td (click)="populateForm(pd)">{{pd.clienteId}}</td> -->
 
 
                   <td>
@@ -62,22 +62,22 @@
             required [class.invalid]="agendamentoTotal.invalid && agendamentoTotal.touched">
     </div>
   </div>
-  <div class="form-row">
+ <!--  <div class="form-row">
       <div class="form-group col-md-6">
           <label>ServiçoID</label>
           <input class="form-control form-control-lg" placeholder="Digite o Servico ID" name="servicoid"
               #servicoId="ngModel" [(ngModel)]="service.formData.servicoId"
               required [class.invalid]=" servicoId.invalid && servicoId.touched">
       </div>
-    </div>
-    <div class="form-row">
+    </div> -->
+   <!--  <div class="form-row">
       <div class="form-group col-md-6">
           <label>ClienteID</label>
           <input class="form-control form-control-lg" placeholder="Digite o ClienteId" name="clienteId"
               #clienteId="ngModel" [(ngModel)]="service.formData.clienteId"
               required [class.invalid]=" clienteId.invalid && clienteId.touched">
       </div>
-    </div>
+    </div> -->
 
   <div class="form-group col-md-6">
       <button class="btn btn-info btn-lg btn-block" type="submit" [disabled]="form.invalid">SUBMIT</button>

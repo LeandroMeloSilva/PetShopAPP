@@ -21,7 +21,7 @@
 
                   <td (click)="populateForm(pd)">{{pd.pagamentoId}}</td>
                   <td (click)="populateForm(pd)">{{pd.valorTotal}}</td>
-                  <td (click)="populateForm(pd)">{{pd.clienteId}}</td>
+                  
 
 
                   <td>
@@ -45,14 +45,14 @@
               required [class.invalid]=" valorTotal.invalid && valorTotal.touched">
       </div>
   </div>
-  <div class="form-row">
+  <!-- <div class="form-row">
     <div class="form-group col-md-6">
         <label>Cliente ID</label>
         <input class="form-control form-control-lg" placeholder="" name="clienteId"
             #clienteId="ngModel" [(ngModel)]="service.formData.clienteId"
             required [class.invalid]="clienteId.invalid && clienteId.touched">
-    </div>
-  </div>
+    </div> -->
+  <!-- </div> -->
   <div class="form-group col-md-6">
       <button class="btn btn-info btn-lg btn-block" type="submit" [disabled]="form.invalid">SUBMIT</button>
   </div>

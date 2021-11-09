@@ -3,7 +3,6 @@ export class Agendamento {
   dataHora: string='';
   situacao: string='';
   agendamentoTotal: string='';
-  servicoId:  string='';
-  clienteId: string='';
-
 }
+
+
