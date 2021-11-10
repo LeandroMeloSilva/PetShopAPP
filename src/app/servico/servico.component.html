@@ -4,62 +4,88 @@
 
 <div class="row">
   <div class="col-md-6">
-
-  </div>
-  <div class="col-md-6">
-      <table class="table">
-          <thead class="thead-light">
-              <tr>
-                  <th>Nome do Serviço </th>
-                  <th>Valor</th>
-                  <th>Duração</th>
-                  <th></th>
-              </tr>
-          </thead>
-          <tbody>
-              <tr *ngFor="let pd of service.list">
-                  <td (click)="populateForm(pd)">{{pd.servicoId}}</td>
-                  <td (click)="populateForm(pd)">{{pd.descricao}}</td>
-                  <td (click)="populateForm(pd)">{{pd.valor}}</td>
-                  <td (click)="populateForm(pd)">{{pd.duracao}}</td>
-                  <td>
-                      <i class="far fa-trash-alt fa-lg text-danger" (click)="onDelete(pd.servicoId)"></i>
-                  </td>
-              </tr>
-          </tbody>
-      </table>
+    <table class="table">
+      <thead class="thead-light">
+        <tr>
+          <th></th>
+          <th>Serviço</th>
+          <th>Valor</th>
+          <th>Duração</th>
+        </tr>
+      </thead>
+      
+      <tbody>
+        <tr *ngFor="let pd of service.list">
+          <td (click)="populateForm(pd)">{{ pd.descricao }}</td>
+          <td (click)="populateForm(pd)">{{ pd.valor }}</td>
+          <td (click)="populateForm(pd)">{{ pd.duracao }}</td>
+          <td>
+            <i
+              class="far fa-trash-alt fa-lg text-danger"
+              (click)="onDelete(pd.servicoId)"
+            ></i>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>
-<form novalidate autocomplete="off" #form="ngForm" (submit)=" onSubmit(form)">
+
+<form novalidate autocomplete="off" #form="ngForm" (submit)="onSubmit(form)">
   <input type="hidden" name="servicoId" [value]="service.formData.servicoId" />
   <div class="form-group">
+    <div class="form-group col-md-6">
       <label>Nome servico</label>
-      <input class="form-control form-control-lg" placeholder="" name="descricao"
-          #descricao="ngModel" [(ngModel)]="service.formData.descricao"
-          required [class.invalid]="  descricao.invalid && descricao.touched">
+      <input
+        class="form-control form-control-md"
+        placeholder="Digite o serviço"
+        name="descricao"
+        #descricao="ngModel"
+        [(ngModel)]="service.formData.descricao"
+        required
+        [class.invalid]="descricao.invalid && descricao.touched"
+      />
+    </div>
   </div>
   <div class="form-group">
+    <div class="form-group col-md-6">
       <label>Valores</label>
-      <input class="form-control form-control-lg" pattern="^[a-zA-z0-9]+$" placeholder="16 Digit Card Number" name="Valor"
-          #valor="ngModel" [(ngModel)]="service.formData.valor"
-          required [class.invalid]="  valor.invalid && valor.touched">
+      <input
+        class="form-control form-control-md"
+        pattern="^[a-zA-z0-9]+$"
+        placeholder="R$"
+        name="Valor"
+        #valor="ngModel"
+        [(ngModel)]="service.formData.valor"
+        required
+        [class.invalid]="valor.invalid && valor.touched"
+      />
+    </div>
   </div>
-  <div class="form-row">
-      <div class="form-group col-md-6">
-          <label>Duração</label>
-          <input class="form-control form-control-lg" pattern="^[a-zA-z0-9]+$" placeholder="Security Code" name="Duracao"
-              #duracao="ngModel" [(ngModel)]="service.formData.duracao"
-              required [class.invalid]="duracao.invalid && duracao.touched">
-      </div>
+  <div class="form-group">
+    <div class="form-group col-md-6">
+      <label>Duração</label>
+      <input
+        class="form-control form-control-md"
+        pattern="^[a-zA-z0-9]+$"
+        placeholder="Digite o tempo do atendimento"
+        name="Duracao"
+        #duracao="ngModel"
+        [(ngModel)]="service.formData.duracao"
+        required
+        [class.invalid]="duracao.invalid && duracao.touched"
+      />
+    </div>
   </div>
 
-  <div class="form-group">
-      <button class="btn btn-info btn-lg btn-block" type="submit" [disabled]="form.invalid">Cadastrar</button>
+  <div class="form-row"></div>
+  <div class="form-group col-md-2">
+    <button
+      class="btn btn-info btn-lg btn-block"
+      type="submit"
+      [disabled]="form.invalid"
+    >
+      Cadastrar
+    </button>
   </div>
 </form>
-
-
-
-
-
-
