@@ -1,118 +1,194 @@
 <div class="jumbotron py-3">
   <h1 class="display-4 text-center">Clientes</h1>
 </div>
+<div class="form-group mb-2">
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <input
+        type="text"
+        class="form-control mr-8"
+        placeholder="Buscar"
+        [(ngModel)]="filtroLista"
+      />
+
+      <button class="btn btn-outline-success">Buscar</button>
+    </div>
+  </div>
+
+  <h3>Filtro: {{ filtroLista }}</h3>
+</div>
 
 <div class="row">
-  <div class="col-md">
-      <table class="table">
-          <thead class="thead-light">
-              <tr>
-                   <th style="width:500px;"></th>
-                  <th>Nome do Cliente</th>
-                  <th>Endereço</th>
-                  <th>Nome do Animal</th>
+  <div class="col-md-6"></div>
+  <div class="col-md-6">
+    <table class="table">
+      <thead class="thead-light">
+        <tr>
+          <th>Nome do Cliente</th>
+          <th>CPF Cliente</th>
+          <th>Nome do Animal</th>
+        </tr>
+      </thead>
+      <tbody *ngIf="service.list && service.list.length">
+        <tr *ngfor="let pd of eventosFiltrados">
+          <td (click)="populateForm(pd)">{{ pd.nome }}</td>
+          <td (click)="populateForm(pd)">{{ pd.cpf }}</td>
+          <td (click)="populateForm(pd)">{{ pd.nomeAnimal }}</td>
 
-              </tr>
-          </thead>
-          <tbody>
-              <tr *ngFor="let pd of service.list">
-
-                  <td (click)="populateForm(pd)">{{pd.nome}}</td>
-                  <td (click)="populateForm(pd)">{{pd.cpf}}</td>
-                  <td (click)="populateForm(pd)">{{pd.nomeAnimal}}</td>
-
-
-                  <td>
-                      <i class="far fa-trash-alt fa-lg text-danger" (click)="onDelete(pd.clienteId)"></i>
-                  </td>
-              </tr>
-          </tbody>
-      </table>
+          <td>
+            <i
+              class="far fa-trash-alt fa-lg text-danger"
+              (click)="onDelete(pd.clienteId)"
+            ></i>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>
 
 <form novalidate autocomplete="off" #form="ngForm" (submit)="onSubmit(form)">
   <input type="hidden" name="clienteId" [value]="service.formData.clienteId" />
 
-
-   <div class="form-row">
-      <div class="form-group col-md-6">
-          <label>Nome do Cliente </label>
-          <input class="form-control form-control-lg" placeholder="Digite o Cliente" name="nome"
-              #nome="ngModel" [(ngModel)]="service.formData.nome"
-              required [class.invalid]=" nome.invalid && nome.touched">
-      </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label>Nome do Cliente </label>
+      <input
+        class="form-control form-control-sd"
+        placeholder="Digite o nome"
+        name="nome"
+        #nome="ngModel"
+        [(ngModel)]="service.formData.nome"
+        required
+        [class.invalid]="nome.invalid && nome.touched"
+      />
+    </div>
   </div>
   <div class="form-row">
     <div class="form-group col-md-6">
-        <label>CPF</label>
-        <input class="form-control form-control-lg" pattern="^[a-zA-z0-9]+$" placeholder="Digite o CPF" name="cpf"
-            #cpf="ngModel" [(ngModel)]="service.formData.cpf"
-            required [class.invalid]="cpf.invalid && cpf.touched">
+      <label>CPF</label>
+      <input
+        class="form-control form-control-sd"
+        pattern="^[a-zA-z0-9]+$"
+        placeholder="Digite o cpf"
+        name="cpf"
+        #cpf="ngModel"
+        [(ngModel)]="service.formData.cpf"
+        required
+        [class.invalid]="cpf.invalid && cpf.touched"
+      />
     </div>
   </div>
-    <div class="form-row">
-      <div class="form-group col-md-6">
-          <label>Telefone</label>
-          <input class="form-control form-control-lg" pattern="^[a-zA-z0-9]+$" placeholder="Digite o Telefone" name="telefone"
-              #telefone="ngModel" [(ngModel)]="service.formData.telefone"
-              required  [class.invalid]=" telefone.invalid && telefone.touched">
-      </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label>Telefone</label>
+      <input
+        class="form-control form-control-sd"
+        pattern="^[a-zA-z0-9]+$"
+        placeholder="tel"
+        name="telefone"
+        #telefone="ngModel"
+        [(ngModel)]="service.formData.telefone"
+        required
+        [class.invalid]="telefone.invalid && telefone.touched"
+      />
     </div>
-    <div class="form-row">
-      <div class="form-group col-md-6">
-          <label>Email</label>
-          <input class="form-control form-control-lg" pattern="^[a-zA-z0-9]+$" placeholder="Digite o email" name="email"
-              #email="ngModel" [(ngModel)]="service.formData.email"
-              required maxlength="" minlength="" [class.invalid]=" email.invalid && email.touched">
-      </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label>Email</label>
+      <input
+        type="email"
+        class="form-control form-control-sd"
+        placeholder="nome@exemplo.com"
+        name="email"
+        #email="ngModel"
+        [(ngModel)]="service.formData.email"
+        required
+        maxlength=""
+        minlength=""
+        [class.invalid]="email.invalid && email.touched"
+      />
     </div>
-    <div class="form-row">
-      <div class="form-group col-md-6">
-          <label>Endereço</label>
-          <input class="form-control form-control-lg" placeholder="Digite o Servico ID" name="endereco"
-              #endereco="ngModel" [(ngModel)]="service.formData.endereco"
-              required  [class.invalid]=" endereco.invalid && endereco.touched">
-      </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label>Endereço</label>
+      <input
+        class="form-control form-control-sd"
+        placeholder="Digite o endereço"
+        name="endereco"
+        #endereco="ngModel"
+        [(ngModel)]="service.formData.endereco"
+        required
+        [class.invalid]="endereco.invalid && endereco.touched"
+      />
     </div>
-    <div class="form-row">
-      <div class="form-group col-md-6">
-          <label>Nome do Animal</label>
-          <input class="form-control form-control-lg" placeholder="Digite o Servico ID" name="nomeAnimal"
-              #nomeAnimal="ngModel" [(ngModel)]="service.formData.nomeAnimal"
-              required [class.invalid]=" nomeAnimal.invalid && nomeAnimal.touched">
-      </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label>Nome do Animal</label>
+      <input
+        class="form-control form-control-sd"
+        placeholder="Digite nome do animal"
+        name="nomeAnimal"
+        #nomeAnimal="ngModel"
+        [(ngModel)]="service.formData.nomeAnimal"
+        required
+        [class.invalid]="nomeAnimal.invalid && nomeAnimal.touched"
+      />
     </div>
-    <div class="form-row">
-      <div class="form-group col-md-6">
-          <label>Nome da Raça</label>
-          <input class="form-control form-control-lg" placeholder="Digite o Servico ID" name="nomeRaca"
-              #nomeRaca="ngModel" [(ngModel)]="service.formData.nomeRaca"
-              required [class.invalid]="nomeRaca.invalid && nomeRaca.touched">
-      </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label>Nome da Raça</label>
+      <input
+        class="form-control form-control-sd"
+        placeholder="Digite o nome da raça"
+        name="nomeRaca"
+        #nomeRaca="ngModel"
+        [(ngModel)]="service.formData.nomeRaca"
+        required
+        [class.invalid]="nomeRaca.invalid && nomeRaca.touched"
+      />
     </div>
-    <div class="form-row">
-      <div class="form-group col-md-6">
-          <label>Gênero Animal</label>
-          <input class="form-control form-control-lg" placeholder="Digite o Genero" name="generoAnimal"
-              #generoAnimal="ngModel" [(ngModel)]="service.formData.generoAnimal"
-              required [class.invalid]=" generoAnimal.invalid && generoAnimal.touched">
-      </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label>Gênero Animal</label>
+      <input
+        class="form-control form-control-sd"
+        placeholder="Digite o Genero"
+        name="generoAnimal"
+        #generoAnimal="ngModel"
+        [(ngModel)]="service.formData.generoAnimal"
+        required
+        [class.invalid]="generoAnimal.invalid && generoAnimal.touched"
+      />
     </div>
-    <div class="form-row">
-      <div class="form-group col-md-6">
-          <label>Comportamento</label>
-          <input class="form-control form-control-lg" placeholder="Digite o Servico ID" name="comportamento"
-              #comportamento="ngModel" [(ngModel)]="service.formData.comportamento"
-              required [class.invalid]=" comportamento.invalid && comportamento.touched">
-      </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label>Comportamento</label>
+      <input
+        class="form-control form-control-sd"
+        placeholder="Digite comportamento do animal"
+        name="comportamento"
+        #comportamento="ngModel"
+        [(ngModel)]="service.formData.comportamento"
+        required
+        [class.invalid]="comportamento.invalid && comportamento.touched"
+      />
     </div>
+  </div>
   <div class="form-row"></div>
   <div class="form-group col-md-2">
-      <button class="btn btn-info btn-lg btn-block" type="submit" [disabled]="form.invalid">Cadastrar</button>
+    <button
+      class="btn btn-info btn-lg btn-block"
+      type="submit"
+      [disabled]="form.invalid"
+    >
+      Cadastrar
+    </button>
   </div>
 </form>
-
-
-
-

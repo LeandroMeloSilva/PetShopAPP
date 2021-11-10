@@ -1,27 +1,23 @@
 <div class="jumbotron py-3">
   <h1 class="display-4 text-center">Pagamentos</h1>
 </div>
-
 <div class="row">
-  <div class="col-md">
+  <div class="col-md-6">
+  </div>
+  <div class="col-md-6">
       <table class="table">
           <thead class="thead-light">
               <tr>
-                   <th style="width:500px;"></th>
-                  <th>Data Pagamneto</th>
-                  <th>Valor</th>
+                  <th>Data Pagamento</th>
                   <th>CPF Cliente</th>
-
+                  <th>Valor</th>
               </tr>
           </thead>
           <tbody>
               <tr *ngFor="let pd of service.list">
-
                   <td (click)="populateForm(pd)">{{pd.dataPagamento}}</td>
-                  <td (click)="populateForm(pd)">{{pd.valor}}</td>
                   <td (click)="populateForm(pd)">{{pd.cpfCliente}}</td>
-
-
+                  <td (click)="populateForm(pd)">{{pd.valorTotal}}</td>
                   <td>
                       <i class="far fa-trash-alt fa-lg text-danger" (click)="onDelete(pd.pagamentoId)"></i>
                   </td>
@@ -32,40 +28,58 @@
 </div>
 
 <form novalidate autocomplete="off" #form="ngForm" (submit)="onSubmit(form)">
-  <input type="hidden" name="clienteId" [value]="service.formData.pagamentoId" />
-
-
-   <div class="form-row">
-      <div class="form-group col-md-6">
-          <label>Data Pagamento</label>
-          <input class="form-control form-control-lg" placeholder="Data Pagamento" name="dataPagamento"
-              #dataPagamento="ngModel" [(ngModel)]="service.formData.dataPagamento"
-              required [class.invalid]=" dataPagamento.invalid && dataPagamento.touched">
-      </div>
-  </div>
-  <div class="form-row">
+  <input type="hidden" name="servicoId" [value]="service.formData.pagamentoId" />
+  <div class="form-group">
     <div class="form-group col-md-6">
-        <label>Valor</label>
-        <input class="form-control form-control-lg" pattern="^[a-zA-z0-9]+$" placeholder="Digite o valor" name="valor"
-            #valor="ngModel" [(ngModel)]="service.formData.valor"
-            required [class.invalid]="valor.invalid && valor.touched">
+      <label>Data Pagamento</label>
+      <input
+        class="form-control form-control-md"
+        placeholder="yyyy/mm/dd"
+        name="data"
+        #dataPagamento="ngModel"
+        [(ngModel)]="service.formData.dataPagamento"
+        required
+        [class.invalid]="dataPagamento.invalid && dataPagamento.touched"/>
     </div>
   </div>
-    <div class="form-row">
-      <div class="form-group col-md-6">
-          <label>Telefone</label>
-          <input class="form-control form-control-lg" pattern="^[a-zA-z0-9]+$" placeholder="Digite o CPF" name="cpfCliente"
-              #cpfCliente="ngModel" [(ngModel)]="service.formData.cpfCliente"
-              required  [class.invalid]=" cpfCliente.invalid && cpfCliente.touched">
-      </div>
+  <div class="form-group">
+    <div class="form-group col-md-6">
+      <label>Valor</label>
+      <input
+        class="form-control form-control-md"
+
+        placeholder="R$"
+        name="valorTotal"
+        #valorTotal="ngModel"
+        [(ngModel)]="service.formData.valorTotal"
+        required
+        [class.invalid]="valorTotal.invalid && valorTotal.touched"/>
     </div>
+  </div>
+  <div class="form-group">
+    <div class="form-group col-md-6">
+      <label>CPF Cliente</label>
+      <input
+        class="form-control form-control-md"
+        pattern="^[a-zA-z0-9]+$"
+        placeholder="Digite CPF do Cliente"
+        name="Duracao"
+        #cpfCliente="ngModel"
+        [(ngModel)]="service.formData.cpfCliente"
+        required
+        [class.invalid]="cpfCliente.invalid && cpfCliente.touched"
+      />
+    </div>
+  </div>
 
   <div class="form-row"></div>
   <div class="form-group col-md-2">
-      <button class="btn btn-info btn-lg btn-block" type="submit" [disabled]="form.invalid">Cadastrar</button>
+    <button
+      class="btn btn-info btn-lg btn-block"
+      type="submit"
+      [disabled]="form.invalid"
+    >
+      Cadastrar
+    </button>
   </div>
 </form>
-
-
-
-

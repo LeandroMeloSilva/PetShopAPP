@@ -11,6 +11,7 @@ import { ClienteComponent } from './cliente/cliente.component';
 import { ServicoComponent } from './servico/servico.component';
 import { PagamentoComponent } from './pagamento/pagamento.component';
 import { HomeComponent } from './home/home.component';
+import { ReactiveFormsModule } from "@angular/forms";
 
 
 
@@ -29,7 +30,8 @@ import { HomeComponent } from './home/home.component';
     HttpClientModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    ToastrModule
+    ToastrModule,
+    ReactiveFormsModule
 
 
   ],

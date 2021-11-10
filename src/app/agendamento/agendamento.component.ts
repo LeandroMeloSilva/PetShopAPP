@@ -8,7 +8,7 @@ import { NgForm } from '@angular/forms';
   selector: 'app-agendamento',
   templateUrl: './agendamento.component.html',
   styleUrls: ['./agendamento.component.css'
-  
+
 ]
 })
 export class AgendamentoComponent implements OnInit {
@@ -28,7 +28,7 @@ export class AgendamentoComponent implements OnInit {
   }
 
   insertRecord(form: NgForm) {
-    this.service.postCliente().subscribe(
+    this.service.postAgendamento().subscribe(
       res => {
         this.resetForm(form);
         this.service.refreshList();
@@ -39,7 +39,7 @@ export class AgendamentoComponent implements OnInit {
   }
 
   updateRecord(form: NgForm) {
-    this.service.putCliente().subscribe(
+    this.service.putAgendamento().subscribe(
       res => {
         this.resetForm(form);
         this.service.refreshList();
@@ -61,14 +61,14 @@ export class AgendamentoComponent implements OnInit {
 
   onDelete(id: number) {
     if (confirm('Tem Certeza que Deseja Deletar esse Registro?')) {
-      this.service.deleteCliente(id)
+      this.service.deleteAgendamento(id)
         .subscribe(
           res => {
             this.service.refreshList();
             this.toastr.error("Deletado com Sucesso", 'Detalhe de Agendamento');
           },
-          err => { console.log(err) }
-        )
+          err => { console.log(err); }
+        );
     }
   }
 

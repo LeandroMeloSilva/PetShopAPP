@@ -3,26 +3,24 @@
 </div>
 
 <div class="row">
-
-  <div class="col-md">
+  <div class="col-md-6">
+  </div>
+  <div class="col-md-6">
       <table class="table">
           <thead class="thead-light">
               <tr>
-                   <th style="width:550px;"></th>
-                  <th>Data e Hora</th>
-                  <th>CPF Cliente</th>
-                  <th>Serviço</th>
+                  <th>Data Hora </th>
+                  <th>CPF</th>
+                  <th>Nome Serviço</th>
 
               </tr>
           </thead>
           <tbody>
+            <tbody *ngIf="service.list && service.list.length">
               <tr *ngFor="let pd of service.list">
-
                   <td (click)="populateForm(pd)">{{pd.dataHora}}</td>
-                  <td (click)="populateForm(pd)">{{pd.cpfCliente}</td>
+                  <td (click)="populateForm(pd)">{{pd.cpfCliente}}</td>
                   <td (click)="populateForm(pd)">{{pd.nomeServico}}</td>
-
-
                   <td>
                       <i class="far fa-trash-alt fa-lg text-danger" (click)="onDelete(pd.agendamentoId)"></i>
                   </td>
@@ -32,14 +30,15 @@
   </div>
 </div>
 
+
 <form novalidate autocomplete="off" #form="ngForm" (submit)="onSubmit(form)">
-  <input type="hidden" name="clienteId" [value]="service.formData.agendamentoId" />
+  <input type="hidden" name="agendamentoId" [value]="service.formData.agendamentoId"/>
 
 
    <div class="form-row">
       <div class="form-group col-md-6">
-          <label>Data e Hora </label>
-          <input class="form-control form-control-lg" placeholder="Digite o Data" name="dataHora"
+          <label>Data</label>
+          <input class="form-control form-control-sd" placeholder="aaaa-mm-dd" name="dataHora"
               #dataHora="ngModel" [(ngModel)]="service.formData.dataHora"
               required [class.invalid]=" dataHora.invalid && dataHora.touched">
       </div>
@@ -47,15 +46,16 @@
   <div class="form-row">
     <div class="form-group col-md-6">
         <label>CPF</label>
-        <input class="form-control form-control-lg" pattern="^[a-zA-z0-9]+$" placeholder="Digite o CPF" name="cpfCliente"
+        <input class="form-control form-control-sd" placeholder="Digite o CPF do cliente" name="cpfCliente" ng-cpfCliente ui-mask="999.999.999-99"
             #cpfCliente="ngModel" [(ngModel)]="service.formData.cpfCliente"
             required [class.invalid]="cpfCliente.invalid && cpfCliente.touched">
+
     </div>
   </div>
     <div class="form-row">
       <div class="form-group col-md-6">
           <label>Serviço</label>
-          <input class="form-control form-control-lg" placeholder="Digite o Serviço" name="nomeServico"
+          <input class="form-control form-control-sd" placeholder="Digite nome do serviço" name="nomeServico"
               #nomeServico="ngModel" [(ngModel)]="service.formData.nomeServico"
               required  [class.invalid]=" nomeServico.invalid && nomeServico.touched">
       </div>
@@ -66,7 +66,3 @@
       <button class="btn btn-info btn-lg btn-block" type="submit" [disabled]="form.invalid">Cadastrar</button>
   </div>
 </form>
-
-
-
-

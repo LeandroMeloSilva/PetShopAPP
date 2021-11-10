@@ -10,6 +10,34 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./cliente.component.css']
 })
 export class ClienteComponent implements OnInit {
+  public clientes: any=[];
+  public eventosFiltrados: any=[];
+  private _filtroLista: string = '';
+
+
+
+  public get filtroLista(): string{
+    return this._filtroLista;
+  }
+
+  public set filtroLista(value: string){
+    this._filtroLista = value;
+    this.eventosFiltrados = this.filtroLista ? this.filtraEventos(this.filtroLista): this.clientes;
+
+  }
+
+
+filtraEventos(filtrarPor: string): any {
+  filtrarPor = filtrarPor.toLocaleLowerCase();
+  return this.clientes.filter(
+
+
+    (evento:{nome: string; cpf:string; lote:string; nomeAnimal:string}) => evento.nome.toLocaleLowerCase().indexOf(filtrarPor) !== -1 ||
+    evento.cpf.toLocaleLowerCase().indexOf(filtrarPor) !== -1 || evento.nomeAnimal.toLocaleLowerCase().indexOf(filtrarPor) !== -1
+
+
+  );
+}
 
   constructor(public service: ClienteService,
     private toastr: ToastrService
